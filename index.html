@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/slider.css">
+    <title>Document</title>
+    <style>
+        main{
+            flex-direction: column;
+            padding: 20px;
+        }
+        figcaption{
+            display: flex;
+            justify-content: center;
+            flex-direction: column; 
+        }
+        .addFile{
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            padding: 5px;
+        }
+        .deleteElement{
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            padding: 5px;
+        }
+        .slider-dots{
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="notSix">
+            <div class="notTwo">
+                <header>
+                    <div class="hederDiv">
+                        <h2>First page</h2>
+                    </div>
+                    <p class="hederText">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas, neque doloremque, labore fuga ullam nostrum odit quam quaerat ipsam aut doloribus similique maiores quae voluptates ipsa ut quis est. 
+                    </p>
+                </header>
+                <div class="notOne">
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="index.html">Сторінка №1</a></li>
+                            <li><a href="second page.html">Сторінка №2</a></li>
+                            <li><a href="third page.html">Сторінка №3</a></li>
+                            <li><a href="fourth page.html">Сторінка №4</a></li>
+                            <li><a href="fifth page.html">Сторінка №5</a></li>
+                        </ul>
+                    </nav>
+                    <div class="notThree">
+                        <figcaption>
+                            <div class="addFile">
+                                <input type="file" id="newFile">
+                                <input type="button" value="Додати" onclick="addFile()">
+                            </div>
+                            <div class="deleteElement">
+                                <input type="input">
+                                <input type="button" value="Видалити">
+                            </div>
+                        </figcaption>
+                        <main>
+                            <div class="slider">
+                                <div class="item" >
+                                    <img id="1" src="https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?size=626&ext=jpg" alt="Первый слайд">
+                                    <div class="slideText">Заголовок слайда 1</div>
+                                </div>
+                            
+                                <div class="item">
+                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/1b/69/5d/5a/tramonto-a-sangineto.jpg" alt="Второй слайд">
+                                    <div class="slideText">Заголовок слайда 2</div>
+                                </div>
+                            
+                                <div class="item">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhwHhQnzYXtLCv1HlMXzwczxBK-LSPPknZLvscNvZDqUU5hBT6PDcutS0r_S6yo0tmL34&usqp=CAU" alt="Третий слайд">
+                                    <div class="slideText">Заголовок слайда 3</div>
+                                </div>
+
+                                <div class="item">
+                                    <img src="https://vjoy.cc/wp-content/uploads/2020/11/krutye-i-klassnye-realnye-foto-na-avu-dlya-profilya-podborka-5.jpg" alt="Четвертий слайд">
+                                    <div class="slideText">Заголовок слайда 4</div>
+                                </div>
+                            
+                                <a class="prev" onclick="minusSlide()">&#10094;</a>
+                                <a class="next" onclick="plusSlide()">&#10095;</a>
+                            </div>
+                            
+                            <div class="slider-dots">
+                                <span class="slider-dots_item" onclick="currentSlide(1)"></span> 
+                                <span class="slider-dots_item" onclick="currentSlide(2)"></span> 
+                                <span class="slider-dots_item" onclick="currentSlide(3)"></span> 
+                                <span class="slider-dots_item" onclick="currentSlide(4)"></span> 
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <aside>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nam earum reprehenderit consequuntur aliquid cumque natus eligendi harum ab eveniet optio animi fuga aliquam, molestias repudiandae ut officiis distinctio non. <br>
+                </p>
+            </aside>
+        </div>
+        <footer>
+            <p class="footerText">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta a natus veritatis enim magnam amet quae voluptatum architecto, quaerat, blanditiis provident velit incidunt nostrum porro eius eos in culpa minima! <br>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim exercitationem quod autem facere officiis, officia id tenetur numquam  aperiam dolore natus nam delectus. Dicta.
+            </p>
+            <div class="footerDiv">
+                <h2>First page</h2>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlide() {
+        showSlides(slideIndex += 1);
+    }
+
+    function minusSlide() {
+        showSlides(slideIndex -= 1);  
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("item");
+        var dots = document.getElementsByClassName("slider-dots_item");
+        if (n > slides.length) {
+        slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+    function addFile(){
+        console.log('Click)');
+        /*let pathToFile = document.getElementById('newFile');
+        let fReader = new FileReader();
+        fReader.readAsDataURL(pathToFile.files[0]);
+        fReader.onloadend = function(event){
+            var img = document.getElementById("1");
+            img.src = event.target.result;
+        }*/
+        /*let element = document.getElementById('newFile');
+        let file= element.files[0];
+        async function postData(url = 'server.js', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                body: 'sdsdv'
+            });
+            return await response.json(); // parses JSON response into native JavaScript objects
+        }*/
+        /*let ToSend = 'sdvsdv';
+        fetch("http://192.168.56.1:8080", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ToSend),
+        })
+        console.log('hello');
+        fetch('/api/server', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify('ToSend123')
+		})*/
+    }
+    
+
+</script>
+</html>
