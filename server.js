@@ -1,4 +1,5 @@
 var express = require('express');
+const fs = require("fs");
 const res = require('express/lib/response');
 
 var app = express();
@@ -20,14 +21,31 @@ app.post("/savejson", jsonParser, function (request, response) {
 
     if(!request.body) return response.sendStatus(400);
      
+    fs.writeFile('file.json', JSON.stringify(request.body), err => {
+        if(err){
+            console.log(err);
+            return response.sendStatus(500);
+        } else{
+            console.log('File written');
+        }
+    });
+
     response.json(request.body);
 });
 
 app.post("/readjson", jsonParser, function (request, response) { 
-    let ToSend = {'one':'111', 'two':'222'}; 
-    response.setHeader('Content-Type', 'application/json');
-    //response.statusCode('200');
-    response.end(JSON.stringify(ToSend));
+    fs.readFile('file.json', 'utf-8', (err, jsonString)=>{
+        if(err){
+            console.log(err);
+            return response.sendStatus(500);
+        } else{
+            console.log('File readed');
+            ToSend = jsonString;
+            console.log(JSON.parse(jsonString));
+            response.setHeader('Content-Type', 'application/json');
+            response.end(jsonString);
+        };
+    });
 });
 
 app.listen(3000);
