@@ -51,18 +51,15 @@
                 <div class="notOne">
                     <nav>
                         <ul class="menu">
-                            <li><a href="index.html">Сторінка №1</a></li>
-                            <li><a href="second page.html">Сторінка №2</a></li>
-                            <li><a href="third page.html">Сторінка №3</a></li>
-                            <li><a href="fourth page.html">Сторінка №4</a></li>
-                            <li><a href="fifth page.html">Сторінка №5</a></li>
+                            <li><a href="/">Js Slider</a></li>
+                            <li><a href="/cssslider">Css Slider</a></li>
                         </ul>
                     </nav>
                     <div class="notThree">
                         <figcaption>
                             <div class="addFile">
                                 <input type="file" id="newFile">
-                                <input type="button" value="Додати" onclick="addFile()">
+                                <input type="button" value="Додати" onclick="saveJson()">
                             </div>
                             <div class="deleteElement">
                                 <input type="input">
@@ -156,41 +153,17 @@
         slides[slideIndex - 1].style.display = "block";
         dots[slideIndex - 1].className += " active";
     }
-    function addFile(){
+    function saveJson(){
         console.log('Click)');
-        /*let pathToFile = document.getElementById('newFile');
-        let fReader = new FileReader();
-        fReader.readAsDataURL(pathToFile.files[0]);
-        fReader.onloadend = function(event){
-            var img = document.getElementById("1");
-            img.src = event.target.result;
-        }*/
-        /*let element = document.getElementById('newFile');
-        let file= element.files[0];
-        async function postData(url = 'server.js', data = {}) {
-            // Default options are marked with *
-            const response = await fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                body: 'sdsdv'
-            });
-            return await response.json(); // parses JSON response into native JavaScript objects
-        }*/
-        /*let ToSend = 'sdvsdv';
-        fetch("http://192.168.56.1:8080", {
+
+        let ToSend = {'count':'2', 'one':'111','two':'222'};
+        fetch("/savejson", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
             },
-            body: JSON.stringify(ToSend),
+            body: JSON.stringify(ToSend)
         })
-        console.log('hello');
-        fetch('/api/server', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify('ToSend123')
-		})*/
     }
     
 

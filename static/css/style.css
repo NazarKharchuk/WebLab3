@@ -89,6 +89,8 @@ main{
     justify-content:center;
     word-wrap: break-word;
     overflow: hidden;
+    flex-direction: column;
+    padding: 20px;
 }
 
 main p{
