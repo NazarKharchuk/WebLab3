@@ -101,6 +101,7 @@
     </div>
 </body>
 <script>
+    let first = true;
     let num;
     var slideIndex;
 
@@ -137,7 +138,7 @@
     }
 
     function addURL(){
-        document.getElementById('ButtonAdd').disabled = true;
+        //document.getElementById('ButtonAdd').disabled = true;
 
         let arrURL=[];
         arrURL.length = num;
@@ -147,7 +148,7 @@
         console.log(arrURL);
         console.log('Click)');
 
-        document.getElementById('info').remove();
+        if(first) document.getElementById('info').remove();
 
         
         let ToSend = { 'URLs': arrURL};
@@ -160,8 +161,11 @@
             body: JSON.stringify(ToSend)
         });
 
+        if(!first) document.getElementById('slider').remove();
+
         const div = document.createElement('div');
         div.className = 'slider';
+        div.id = 'slider';
         div.innerHTML = ``;
         for(let i = 0; i<num; i++){
             div.innerHTML += `
@@ -176,8 +180,11 @@
             <a class="next" onclick="plusSlide()">&#10095;</a>
         `;
         document.getElementById('main').appendChild(div);
+
+        if(!first) document.getElementById('slider-dots').remove();
         const div2 = document.createElement('div');
         div2.className = 'slider-dots';
+        div2.id = 'slider-dots';
         div2.innerHTML = ``;
         for(let i = 0; i<num; i++){
             div2.innerHTML += `
@@ -188,6 +195,7 @@
 
         slideIndex = 1;
         showSlides(slideIndex);
+        first = false;
     }
 
     async function time(){
